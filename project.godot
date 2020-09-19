@@ -55,3 +55,7 @@ jump={
 
 3d_physics/layer_1="enviroment"
 3d_physics/layer_2="player"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

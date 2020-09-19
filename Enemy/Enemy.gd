@@ -1,9 +1,17 @@
 extends KinematicBody
 
+enum {
+	IDLE,
+	ALERT,
+}
+
+var state = IDLE
+
+onready var raycast = $RayCast
+
 var path = []
 var path_node = 0
-
-var speed = 5
+var speed = 10
 
 onready var nav = get_parent()
 onready var destination
@@ -26,3 +34,4 @@ func move_to(target_pos):
 
 func _on_Timer_timeout():
 	move_to(destination.global_transform.origin)
+	pass
