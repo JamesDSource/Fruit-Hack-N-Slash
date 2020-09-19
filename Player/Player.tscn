@@ -1,12 +1,14 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-
-[sub_resource type="CapsuleMesh" id=1]
+[ext_resource path="res://Player/Model/PirateModel.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CapsuleShape" id=2]
+radius = 0.387924
+height = 2.57388
 
 [node name="Player" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.154644, 0 )
 collision_layer = 2
 script = ExtResource( 1 )
 
@@ -18,11 +20,9 @@ spring_length = 8.0
 
 [node name="Camera" type="Camera" parent="CameraPivot/SpringArm"]
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.5, 0 )
-mesh = SubResource( 1 )
-material/0 = null
-
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.5, 0 )
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.81779, 0 )
 shape = SubResource( 2 )
+
+[node name="Pirate" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, 0.000785398, -3.25841e-07, 0.000785398, 0.999999, -0.00113446, -5.65165e-07, -0.00113446, -0.999999, 0, 0, 0 )
