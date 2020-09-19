@@ -26,13 +26,13 @@ func movement(delta):
 	var direction = Vector3()
 	
 	# setting the movement direction
-	if(Input.is_action_pressed("move_forward")):
+	if Input.is_action_pressed("move_forward"):
 		direction -= transform.basis.z	
-	if(Input.is_action_pressed("move_backwards")):
+	if Input.is_action_pressed("move_backwards"):
 		direction += transform.basis.z
-	if(Input.is_action_pressed("move_right")):
+	if Input.is_action_pressed("move_right"):
 		direction += transform.basis.x	
-	if(Input.is_action_pressed("move_left")):
+	if Input.is_action_pressed("move_left"):
 		direction -= transform.basis.x
 	
 	direction = direction.normalized()
@@ -41,7 +41,7 @@ func movement(delta):
 	#gravity
 	velocity.y += Constants.GRAVITY
 	#jump
-	if(Input.is_action_just_pressed("jump")):
+	if Input.is_action_just_pressed("jump") && is_on_floor():
 		velocity.y += jump_force
 	
 	velocity = move_and_slide(velocity)
