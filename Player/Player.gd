@@ -1,9 +1,9 @@
 extends KinematicBody
 
 export var sensitivity = 0.1
-export var movement_speed = 20
-export var acceleration = 15
-export var air_acceleration = 5
+export var movement_speed = 10
+export var acceleration = 5
+export var air_acceleration = 2
 export var jump_force = 30;
 
 var velocity = Vector3()
@@ -11,6 +11,8 @@ var velocity = Vector3()
 func _ready():
 	#locks the mouse in the same position so it doesn't touch the edges of the screen
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	$Pirate/AnimationPlayer.get_animation("Walk").set_loop(true)
+	$Pirate/AnimationPlayer.play("Walk")
 
 func _input(event):
 	# third person camera controls
