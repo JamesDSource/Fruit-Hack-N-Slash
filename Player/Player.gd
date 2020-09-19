@@ -44,4 +44,4 @@ func movement(delta):
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		velocity.y += jump_force
 	
-	velocity = move_and_slide(velocity)
+	velocity = move_and_slide(velocity, Vector3.UP)
