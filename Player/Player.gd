@@ -3,6 +3,14 @@ extends KinematicBody
 #mouse sensitivity
 var sensitivity = 0.1
 
+# states
+enum PLAYERSTATE {
+	FREE,
+	ATTACK,
+	DEAD
+}
+var state = PLAYERSTATE.FREE
+
 # rotation
 onready var target_pirate_y_rotation = $Pirate.rotation_degrees.y
 onready var pirate_y_rotation = $Pirate.rotation_degrees.y
@@ -10,10 +18,13 @@ onready var pirate_y_rotation = $Pirate.rotation_degrees.y
 # movement
 var movement_speed = 8
 var acceleration = 5
-var jump_force = 30
 var run_multiplier = 3
 var rotation_speed = 10
 var velocity = Vector3()
+
+var jump_force = 30
+var jump_buffer_frames = 0.15
+var jump_buffer = jump_buffer_frames
 
 var air_movement_speed = 12
 var air_acceleration = 2
@@ -31,8 +42,6 @@ func set_blend_times():
 		for second_animation in animations:
 			if animation != second_animation:
 				anim_player.set_blend_time(animation, second_animation, blend_time)
-
-
 
 func _ready():
 	#locks the mouse in the same position so it doesn't touch the edges of the screen
@@ -61,7 +70,13 @@ func _process(delta):
 		$Pirate.rotation_degrees.y = pirate_y_rotation
 
 func _physics_process(delta):
-	movement(delta)
+	match state:
+		PLAYERSTATE.FREE:
+			if Input.is_action_just_pressed("jump"):
+				jump_buffer = jump_buffer_frames
+			elif jump_buffer > 0:
+				jump_buffer-=delta
+			movement(delta)
 
 func movement(delta):
 	set_animation = "Idle-loop"
@@ -97,8 +112,9 @@ func movement(delta):
 			
 		velocity = velocity.linear_interpolate(direction*movement_speed*mult, acceleration*delta*mult)
 		#jump
-		if Input.is_action_just_pressed("jump"):
+		if jump_buffer > 0:
 			velocity.y += jump_force
+			jump_buffer = 0
 	else:
 		set_animation = "Jump-loop" if velocity.y > 0 else "Fall-loop"
 		air_velocity = air_velocity.linear_interpolate(direction*air_movement_speed, air_acceleration*delta)
