@@ -3,26 +3,31 @@
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Model/PirateModel.tscn" type="PackedScene" id=2]
 
-[sub_resource type="CapsuleShape" id=1]
+[sub_resource type="CapsuleShape" id=2]
+radius = 0.50789
+height = 3.07989
 
-[node name="Player" type="KinematicBody" groups=[
-"Player",
-]]
+[node name="Player" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.154644, 0 )
 collision_layer = 2
 script = ExtResource( 1 )
 
-[node name="CameraPivot" type="Spatial" parent="."]
+[node name="CameraPivotH" type="Spatial" parent="."]
 
-[node name="SpringArm" type="SpringArm" parent="CameraPivot"]
+[node name="CameraPivotV" type="Spatial" parent="CameraPivotH"]
+
+[node name="SpringArm" type="SpringArm" parent="CameraPivotH/CameraPivotV"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
 spring_length = 8.0
 
-[node name="Camera" type="Camera" parent="CameraPivot/SpringArm"]
+[node name="Camera" type="Camera" parent="CameraPivotH/CameraPivotV/SpringArm"]
+cull_mask = 2148532223
+current = true
+fov = 90.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.81779, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Pirate" parent="." instance=ExtResource( 2 )]
 transform = Transform( -1, 0.000785398, -3.25841e-07, 0.000785398, 0.999999, -0.00113446, -5.65165e-07, -0.00113446, -0.999999, 0, 0, 0 )
