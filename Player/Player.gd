@@ -16,6 +16,8 @@ onready var target_pirate_y_rotation = $Pirate.rotation_degrees.y
 onready var pirate_y_rotation = $Pirate.rotation_degrees.y
 
 # movement
+var can_move = true
+
 var movement_speed = 8
 var acceleration = 5
 var run_multiplier = 3
@@ -34,10 +36,15 @@ var air_velocity = Vector3()
 var animation_playing = ""
 var set_animation = "Idle-loop"
 
+# attacking
+var attack_combo = ["Swing1", "Swing2", "Swing3"]
+var combo_index = 0
+var attack_thrust_speed = 6
+
 func set_blend_times():
 	var blend_time = 0.2
 	var anim_player = $Pirate/AnimationPlayer
-	var animations = ["Idle-loop", "Walk-loop", "Run-loop", "Jump-loop", "Fall-loop"]
+	var animations = ["Idle-loop", "Walk-loop", "Run-loop", "Jump", "Fall-loop", "Swing1", "Swing2", "Swing3"]
 	for animation in animations:
 		for second_animation in animations:
 			if animation != second_animation:
@@ -70,13 +77,39 @@ func _process(delta):
 		$Pirate.rotation_degrees.y = pirate_y_rotation
 
 func _physics_process(delta):
+	movement(delta)
 	match state:
 		PLAYERSTATE.FREE:
+			can_move = true
 			if Input.is_action_just_pressed("jump"):
 				jump_buffer = jump_buffer_frames
 			elif jump_buffer > 0:
 				jump_buffer-=delta
-			movement(delta)
+			
+			if Input.is_action_just_pressed("turn"):
+				target_pirate_y_rotation = $CameraPivotH.rotation_degrees.y + 180
+			
+			if Input.is_action_just_pressed("attack") && is_on_floor():
+				state = PLAYERSTATE.ATTACK
+		
+		PLAYERSTATE.ATTACK:
+			can_move = false
+			set_animation = attack_combo[combo_index]
+			
+			# attack thrust
+			if $Pirate.attack_thrust:
+				move_and_slide($Pirate.transform.basis.z.normalized() * attack_thrust_speed, Vector3.UP)
+			
+			# comboing attacks
+			if $Pirate.can_combo && Input.is_action_just_pressed("attack"):
+				combo_index += 1
+				if combo_index >= attack_combo.size():
+					combo_index = 0
+				
+			# returning to free state after attack
+			if !$Pirate/AnimationPlayer.is_playing():
+				state = PLAYERSTATE.FREE
+				combo_index = 0
 
 func movement(delta):
 	set_animation = "Idle-loop"
@@ -92,6 +125,9 @@ func movement(delta):
 		direction += pivot_basis.x	
 	if Input.is_action_pressed("move_left"):
 		direction -= pivot_basis.x
+		
+	if !can_move:
+		direction = Vector3()
 	
 	direction = direction.normalized()
 	if direction != Vector3():
@@ -116,7 +152,7 @@ func movement(delta):
 			velocity.y += jump_force
 			jump_buffer = 0
 	else:
-		set_animation = "Jump-loop" if velocity.y > 0 else "Fall-loop"
+		set_animation = "Jump" if velocity.y > 0 else "Fall-loop"
 		air_velocity = air_velocity.linear_interpolate(direction*air_movement_speed, air_acceleration*delta)
 		
 	#gravity
