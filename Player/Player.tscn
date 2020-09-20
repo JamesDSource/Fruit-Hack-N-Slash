@@ -19,7 +19,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
 spring_length = 8.0
 
 [node name="Camera" type="Camera" parent="CameraPivot/SpringArm"]
-current = true
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.81779, 0 )

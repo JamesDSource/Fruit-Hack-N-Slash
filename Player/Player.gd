@@ -19,6 +19,7 @@ func _ready():
 	$Pirate/AnimationPlayer.get_animation("Idle").set_loop(true)
 	$Pirate/AnimationPlayer.get_animation("Walk").set_loop(true)
 	$Pirate/AnimationPlayer.get_animation("Run").set_loop(true)
+	add_to_group("Player")
 
 func _input(event):
 	# third person camera controls
