@@ -4,8 +4,8 @@
 [ext_resource path="res://Player/Model/PirateModel.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CapsuleShape" id=2]
-radius = 0.387924
-height = 2.57388
+radius = 0.50789
+height = 3.07989
 
 [node name="Player" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.154644, 0 )
