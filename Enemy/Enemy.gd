@@ -7,29 +7,41 @@ enum {
 }
 
 var state = IDLE
+var target
+const TURN_SPEED = 2
 
 onready var raycast = $RayCast
 #onready var anim = $enemyanimationthing?
+onready var eyes = $Eyes
+onready var shoottimer = $ShootTimer
 
 func _ready():
-	add_to_group("units")
+	add_to_group("Enemys")
+
+func _on_Area_body_entered(body):
+	if body.is_in_group("Player"):
+		state = ALERT
+		target = body
+		print("Targeting")
+
+func _on_Area_body_exited(body):
+	state = IDLE
+	shoottimer.stop()
+#	if body.name == "Player":
+#		target = null
+	print("LostTarget")
+
+func _on_ShootTimer_timeout():
+	pass # Replace with function body.
 
 func _process(delta):
-	
-	if raycast.is_colliding():
-		state = ALERT
-	else:
-		state = IDLE
-		
+
 	match state:
 		IDLE:
-#			var from = project_ray_origin(event.position)
-#			var to = from + project_ray_normal(event.position) * ray_length
-#			var space_state = get_world().direct_space_state
-#			var result = space_state.intersect_ray(from, to, [], 1)
-#			if result:
 			pass
 		ALERT:
+			eyes.look_at(target.global_transform.origin, Vector3.UP)
+			rotate_y(deg2rad(eyes.rotation.y * TURN_SPEED))
 			pass
 		STUNNED:
 			pass
@@ -45,6 +57,7 @@ onready var destination
 func _physics_process(delta):
 	if path_node < path.size():
 		var direction = (path[path_node] - global_transform.origin)
+		MeshInstance.rotation_degrees
 		if direction.length() < 1:
 			path_node += 1
 		else:
@@ -54,13 +67,6 @@ func move_to(target_pos):
 	path = nav.get_simple_path(global_transform.origin, target_pos)
 	path_node = 0
 
-func _on_Timer_timeout():
+func _on_PathRefreshTimer_timeout():
 	move_to(destination.global_transform.origin)
-	pass
-
-
-func _on_Area_body_entered(body):
-	print(body.name + "entered")
-
-func _on_Area_body_exited(body):
-	print(body.name + ' exited')
+	pass # Replace with function body.

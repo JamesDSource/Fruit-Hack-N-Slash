@@ -9,4 +9,4 @@ func _input(event):
 		var space_state = get_world().direct_space_state
 		var result = space_state.intersect_ray(from, to, [], 1)
 		if result:
-			get_tree().call_group("units", "move_to", result.position)
+			get_tree().call_group("Enemys", "move_to", result.position)

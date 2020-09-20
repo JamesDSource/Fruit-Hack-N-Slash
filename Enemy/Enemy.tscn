@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Enemy/Enemy.gd" type="Script" id=1]
 
@@ -14,6 +14,9 @@ mid_height = 2.0
 [sub_resource type="SpatialMaterial" id=4]
 albedo_color = Color( 0.254902, 0.254902, 0.254902, 1 )
 
+[sub_resource type="SphereShape" id=5]
+radius = 10.0
+
 [node name="Enemy" type="KinematicBody"]
 script = ExtResource( 1 )
 
@@ -27,20 +30,23 @@ transform = Transform( 0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 2.75, 1 )
 mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
 
-[node name="Timer" type="Timer" parent="."]
+[node name="PathRefreshTimer" type="Timer" parent="."]
 
-[node name="RayCast" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, 0 )
-enabled = true
-cast_to = Vector3( 15, 0, 0 )
-collision_mask = 3
+[node name="ShootTimer" type="Timer" parent="."]
 
 [node name="Area" type="Area" parent="."]
 
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 5 )
+
 [node name="CollisionPolygon" type="CollisionPolygon" parent="Area"]
 transform = Transform( -1.62921e-07, 1, 1.62921e-07, 0, -1.62921e-07, 1, 1, 1.62921e-07, 2.65431e-14, 0, 2.75, 0 )
+visible = false
 depth = 2.0
 polygon = PoolVector2Array( 0, 0, 15, 6, 15, -6 )
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[node name="Eyes" type="Spatial" parent="."]
+[connection signal="timeout" from="PathRefreshTimer" to="." method="_on_PathRefreshTimer_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]
