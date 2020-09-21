@@ -20,7 +20,6 @@ extents = Vector3( 1.47928, 0.571164, 1.20104 )
 [node name="Pirate" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 can_combo = true
-attack_thrust = true
 
 [node name="Body" parent="Armature001/Skeleton" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
@@ -51,6 +50,8 @@ anims/Walk-loop = ExtResource( 12 )
 
 [node name="SwingHitBox" type="Area" parent="." index="2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93935, 1.8784 )
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="SwingHitBox" index="0"]
 shape = SubResource( 1 )
