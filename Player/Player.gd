@@ -20,13 +20,13 @@ var can_move = true
 
 var movement_speed = 8
 var acceleration = 5
-var run_multiplier = 2.5
+var run_multiplier = 2
 var rotation_speed = 10
 var velocity = Vector3()
 
 var jump_force = 25
 var jump_buffer_frames = 0.15
-var jump_buffer = jump_buffer_frames
+var jump_buffer = 0
 
 var air_movement_speed = 12
 var air_acceleration = 2

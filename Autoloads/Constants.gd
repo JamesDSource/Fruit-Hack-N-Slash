@@ -1,2 +1,2 @@
 extends Node
-const GRAVITY = -0.98
+const GRAVITY = -1.5

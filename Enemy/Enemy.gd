@@ -34,12 +34,15 @@ onready var shoottimer = $AttackTimer
 onready var pathtimer = $PathRefreshTimer
 onready var attackrange = $AttackArea/CollisionShape
 
+# attacks
+export var attack_animation = ""
+
 func _ready():
 	add_to_group("Enemys")
 
 func damage(hp_damage):
 	hit_points = max(0, hit_points - hp_damage)
-	HitPause.hit_pause(0.05)
+	HitPause.hit_pause(0.08)
 	super_armor -= 1
 	if super_armor <= 0:
 		state = ENEMYSTATE.STUNNED
@@ -92,14 +95,18 @@ func _process(delta):
 							has_player = true
 							
 					if has_player:
-						pass
+						if $AttackTimer.time_left == 0:
+							state = ENEMYSTATE.ATTACK
 					else:
 						move_to(nav.get_closest_point(target.global_transform.origin))
 					
 					path_update = false
 		
 		ENEMYSTATE.ATTACK: # State for when the enemy is attacking the player
-			pass		
+			can_move = false
+			if attack_animation == "": 
+				state = ENEMYSTATE.ALERT
+				$AttackTimer.start()
 		
 		ENEMYSTATE.STUNNED: # State for when the enemy is stunned
 			can_move = false
@@ -126,14 +133,6 @@ func move_to(target_pos):
 
 func _on_PathRefreshTimer_timeout():
 	path_update = true
-
-
-func _on_AttackTimer_timeout():
-	if raycast.is_colliding():
-		var hit = raycast.get_collider()
-		if hit.is_in_group("Player"):
-			pass
-
 
 func _on_StunTimer_timeout():
 	if state == ENEMYSTATE.STUNNED:
