@@ -21,8 +21,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Constants="*res://Constants.gd"
-Math="*res://Math.gd"
+Constants="*res://Autoloads/Constants.gd"
+Math="*res://Autoloads/Math.gd"
+HitPause="*res://Autoloads/HitPause.gd"
 
 [importer_defaults]
 
@@ -1131,4 +1132,4 @@ turn={
 
 3d_physics/layer_1="enviroment"
 3d_physics/layer_2="player"
-3d_physics/layer_3="player hitbox"
+3d_physics/layer_3="walls"

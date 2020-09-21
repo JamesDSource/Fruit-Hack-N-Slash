@@ -61,6 +61,10 @@ wait_time = 0.1
 
 [node name="AttackTimer" type="Timer" parent="."]
 
+[node name="StunTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [node name="DetectArea" type="Area" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="DetectArea"]
@@ -87,5 +91,6 @@ cast_to = Vector3( 0, 0, -50 )
 collision_mask = 3
 [connection signal="timeout" from="PathRefreshTimer" to="." method="_on_PathRefreshTimer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_StunTimer_timeout"]
 [connection signal="body_entered" from="DetectArea" to="." method="_on_Area_body_entered"]
 [connection signal="body_exited" from="DetectArea" to="." method="_on_Area_body_exited"]

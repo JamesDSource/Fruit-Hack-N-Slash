@@ -78,6 +78,7 @@ mesh = SubResource( 5 )
 material/0 = SubResource( 6 )
 
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/MeshCube3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.108723, -0.0807304, 0.0640793 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/MeshCube3/StaticBody"]
 shape = SubResource( 7 )

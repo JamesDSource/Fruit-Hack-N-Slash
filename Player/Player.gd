@@ -20,11 +20,11 @@ var can_move = true
 
 var movement_speed = 8
 var acceleration = 5
-var run_multiplier = 3
+var run_multiplier = 2.5
 var rotation_speed = 10
 var velocity = Vector3()
 
-var jump_force = 30
+var jump_force = 25
 var jump_buffer_frames = 0.15
 var jump_buffer = jump_buffer_frames
 
@@ -40,9 +40,11 @@ var set_animation = "Idle-loop"
 var attack_combo = ["Swing1", "Swing2", "Swing3"]
 var combo_index = 0
 var attack_thrust_speed = 6
+var sword_attack_damage = 20
+var attack_damaged = []
 
 func set_blend_times():
-	var blend_time = 0.2
+	var blend_time = 0.1
 	var anim_player = $Pirate/AnimationPlayer
 	var animations = ["Idle-loop", "Walk-loop", "Run-loop", "Jump", "Fall-loop", "Swing1", "Swing2", "Swing3"]
 	for animation in animations:
@@ -71,6 +73,7 @@ func _process(delta):
 	if animation_playing != set_animation:
 		$Pirate/AnimationPlayer.play(set_animation)
 		animation_playing = set_animation
+		attack_damaged = []
 		
 	if target_pirate_y_rotation != pirate_y_rotation:
 		pirate_y_rotation = Math.interpolate_angle(pirate_y_rotation, target_pirate_y_rotation, rotation_speed)
@@ -91,6 +94,7 @@ func _physics_process(delta):
 			
 			if Input.is_action_just_pressed("attack") && is_on_floor():
 				state = PLAYERSTATE.ATTACK
+				$ComboTimer.stop()
 		
 		PLAYERSTATE.ATTACK:
 			can_move = false
@@ -100,16 +104,23 @@ func _physics_process(delta):
 			if $Pirate.attack_thrust:
 				move_and_slide($Pirate.transform.basis.z.normalized() * attack_thrust_speed, Vector3.UP)
 			
-			# comboing attacks
-			if $Pirate.can_combo && Input.is_action_just_pressed("attack"):
-				combo_index += 1
-				if combo_index >= attack_combo.size():
-					combo_index = 0
-				
+			#dealing damage
+			if !$Pirate/SwingHitBox/CollisionShape.disabled:
+				var bodies_hit = $Pirate/SwingHitBox.get_overlapping_bodies()
+				for body in bodies_hit:
+					if body.is_in_group("Enemys") && attack_damaged.find(body) == -1:
+						$HitSound.play()
+						body.damage(sword_attack_damage)
+						attack_damaged.append(body)
+			
 			# returning to free state after attack
 			if !$Pirate/AnimationPlayer.is_playing():
 				state = PLAYERSTATE.FREE
-				combo_index = 0
+				combo_index += 1
+				if combo_index >= attack_combo.size():
+					combo_index = 0
+				$ComboTimer.start()
+				
 
 func movement(delta):
 	set_animation = "Idle-loop"
@@ -160,3 +171,7 @@ func movement(delta):
 	move_and_slide(air_velocity, Vector3.UP)
 	velocity = move_and_slide(velocity, Vector3.UP)
 	
+
+# resets the combo
+func _on_ComboTimer_timeout():
+	combo_index = 0

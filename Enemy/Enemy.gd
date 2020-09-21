@@ -21,8 +21,10 @@ var path_update = false
 var velocity = Vector3()
 
 #health
-var max_hit_points = 10
+export var max_hit_points = 50
 var hit_points = max_hit_points
+export var max_super_armor = 1
+var super_armor = max_super_armor
 
 onready var raycast = $RayCast
 #onready var anim = $enemyanimationthing?
@@ -36,6 +38,11 @@ func _ready():
 
 func damage(hp_damage):
 	hit_points = max(0, hit_points - hp_damage)
+	HitPause.hit_pause(0.05)
+	super_armor -= 1
+	if super_armor <= 0:
+		state = ENEMYSTATE.STUNNED
+		super_armor = max_super_armor
 
 # detection radious
 func _on_Area_body_entered(body):
@@ -92,7 +99,9 @@ func _process(delta):
 			pass		
 		
 		ENEMYSTATE.STUNNED: # State for when the enemy is stunned
-			pass
+			if $StunTimer.time_left == 0:
+				$StunTimer.start()
+			rotation_degrees.y += 5
 
 #Pathfinding
 onready var nav = get_parent()
@@ -120,3 +129,8 @@ func _on_AttackTimer_timeout():
 		var hit = raycast.get_collider()
 		if hit.is_in_group("Player"):
 			pass
+
+
+func _on_StunTimer_timeout():
+	if state == ENEMYSTATE.STUNNED:
+		state = ENEMYSTATE.ALERT
