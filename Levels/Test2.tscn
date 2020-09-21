@@ -51,6 +51,7 @@ shape = SubResource( 4 )
 
 [node name="MeshCube" type="MeshInstance" parent="Navigation/NavigationMeshInstance"]
 transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 2, 0 )
+visible = false
 layers = 2147483649
 mesh = SubResource( 5 )
 material/0 = SubResource( 6 )

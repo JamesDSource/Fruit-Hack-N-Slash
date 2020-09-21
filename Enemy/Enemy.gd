@@ -19,6 +19,7 @@ export var acceleration = 5
 export var turn_speed = 2.5
 var path_update = false
 var velocity = Vector3()
+var can_move = true
 
 #health
 export var max_hit_points = 50
@@ -63,15 +64,17 @@ func _on_Area_body_exited(body):
 func _process(delta):
 	match state:
 		ENEMYSTATE.IDLE: # Default state when the enemy has never encountered the player
+			can_move = false
 			if target != null:
 				state = ENEMYSTATE.ALERT
 		
 		ENEMYSTATE.SEARCH: # State for after the enemy has lost the player and is searching for them
+			can_move = true
 			if target != null:
 				state = ENEMYSTATE.ALERT
 		
 		ENEMYSTATE.ALERT: # State for when the enemy has detected the player and is chasing
-
+			can_move = true
 			if target == null:
 				state = ENEMYSTATE.SEARCH
 			else:
@@ -91,7 +94,7 @@ func _process(delta):
 					if has_player:
 						pass
 					else:
-						move_to(target.global_transform.origin)
+						move_to(nav.get_closest_point(target.global_transform.origin))
 					
 					path_update = false
 		
@@ -99,6 +102,7 @@ func _process(delta):
 			pass		
 		
 		ENEMYSTATE.STUNNED: # State for when the enemy is stunned
+			can_move = false
 			if $StunTimer.time_left == 0:
 				$StunTimer.start()
 			rotation_degrees.y += 5
@@ -108,7 +112,7 @@ onready var nav = get_parent()
 
 func _physics_process(delta):
 	var direction = Vector3()
-	if path_node < path.size():
+	if path_node < path.size() && can_move:
 		direction = (path[path_node] - global_transform.origin)
 		if direction.length() < 1:
 			path_node += 1	
