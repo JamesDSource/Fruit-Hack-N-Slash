@@ -1,0 +1,28 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Materials/DarkRed.tres" type="Material" id=1]
+[ext_resource path="res://Materials/Orange.material" type="Material" id=2]
+[ext_resource path="res://Materials/DarkBrown.tres" type="Material" id=3]
+[ext_resource path="res://Enemy/Pear/Model/Gun/Flintlock.gltf" type="PackedScene" id=4]
+[ext_resource path="res://Materials/Red.material" type="Material" id=5]
+[ext_resource path="res://Materials/Yellow.tres" type="Material" id=6]
+[ext_resource path="res://Materials/Peach.material" type="Material" id=7]
+
+[node name="Flintlock" instance=ExtResource( 4 )]
+
+[node name="gun" parent="Armature/Skeleton" index="0"]
+material/0 = ExtResource( 7 )
+material/1 = ExtResource( 1 )
+material/2 = ExtResource( 3 )
+
+[node name="hammer" parent="Armature/Skeleton" index="1"]
+material/0 = ExtResource( 5 )
+
+[node name="orange" parent="Armature/Skeleton" index="2"]
+material/0 = ExtResource( 2 )
+
+[node name="trigger" parent="Armature/Skeleton" index="3"]
+material/0 = ExtResource( 5 )
+
+[node name="yello" parent="Armature/Skeleton" index="4"]
+material/0 = ExtResource( 6 )
