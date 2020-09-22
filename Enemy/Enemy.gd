@@ -113,6 +113,8 @@ func _process(delta):
 			if $StunTimer.time_left == 0:
 				$StunTimer.start()
 			rotation_degrees.y += 5
+	if hit_points <= 0:
+		queue_free()
 
 #Pathfinding
 onready var nav = get_parent()
