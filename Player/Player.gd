@@ -11,6 +11,10 @@ enum PLAYERSTATE {
 }
 var state = PLAYERSTATE.FREE
 
+# health
+var max_hit_points = 50
+var hit_points = max_hit_points
+
 # rotation
 onready var target_pirate_y_rotation = $Pirate.rotation_degrees.y
 onready var pirate_y_rotation = $Pirate.rotation_degrees.y

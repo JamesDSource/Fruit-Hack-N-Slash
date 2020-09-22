@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Materials/DarkBrown.tres" type="Material" id=1]
+[ext_resource path="res://Enemy/Banana/Model/Banana.gltf" type="PackedScene" id=2]
+[ext_resource path="res://Materials/Red.material" type="Material" id=3]
+[ext_resource path="res://Materials/Yellow.tres" type="Material" id=4]
+
+[node name="Banana" instance=ExtResource( 2 )]
+
+[node name="banana" parent="Armature/Skeleton" index="0"]
+material/0 = ExtResource( 4 )
+material/1 = ExtResource( 1 )
+material/2 = ExtResource( 1 )
+
+[node name="Icosphere" parent="Armature/Skeleton" index="1"]
+material/0 = ExtResource( 3 )
+
+[node name="Icosphere001" parent="Armature/Skeleton" index="2"]
+material/0 = ExtResource( 3 )

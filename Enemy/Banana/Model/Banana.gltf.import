@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/Pirate.gltf-e85772ceda4b0940b4ba7a629d140b81.scn"
+path="res://.import/Banana.gltf-ee89189681ec75ea6f11e702ca8c164f.scn"
 
 [deps]
 
-source_file="res://Pirate.gltf"
-dest_files=[ "res://.import/Pirate.gltf-e85772ceda4b0940b4ba7a629d140b81.scn" ]
+source_file="res://Enemy/Banana/Model/Banana.gltf"
+dest_files=[ "res://.import/Banana.gltf-ee89189681ec75ea6f11e702ca8c164f.scn" ]
 
 [params]
 
