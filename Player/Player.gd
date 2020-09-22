@@ -23,7 +23,7 @@ onready var pirate_y_rotation = $Pirate.rotation_degrees.y
 var can_move = true
 
 var movement_speed = 8
-var acceleration = 5
+var acceleration = 7
 var run_multiplier = 2
 var rotation_speed = 10
 var velocity = Vector3()

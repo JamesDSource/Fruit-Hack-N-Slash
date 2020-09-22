@@ -4,8 +4,9 @@
 [ext_resource path="res://Player/Model/PirateModel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Sounds/HitSound.wav" type="AudioStream" id=3]
 
-[sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.730605, 0.381924, 1.77394 )
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.592311
+height = 2.20019
 
 [node name="Player" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.154644, 0 )

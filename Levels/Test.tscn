@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Materials/Orange.material" type="Material" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Enemy/Pear/Model/PearModel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemy/Banana/Model/BananaModel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Enemy/Strawberry/Model/StrawberryModel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Tiles/Floor/FloorTiles.meshlib" type="MeshLibrary" id=8]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -42,3 +43,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.33639, 0, 15.5149 )
 
 [node name="Banana" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.698, 0, 0 )
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource( 8 )
+cell_size = Vector3( 5, 5, 5 )
+cell_center_y = false
+data = {
+"cells": PoolIntArray( 0, 5, 1048577, 1, 5, 1048577, 2, 5, 1074790401, 3, 5, 1048577, 4, 5, 1074790401, 65528, 5, 1048577, 65529, 5, 1048577, 65530, 5, 1048577, 65531, 5, 1048577, 65532, 5, 1048577, 65533, 5, 1048577, 65534, 5, 537919489, 65535, 5, 537919489, 0, 6, 537919488, 1, 6, 1048576, 2, 6, 537919488, 3, 6, 1048576, 4, 6, 1048576, 65528, 6, 537919488, 65529, 6, 537919488, 65530, 6, 1048576, 65531, 6, 1048576, 65532, 6, 537919488, 65533, 6, 1074790400, 65534, 6, 1048576, 65535, 6, 1048576, 0, 7, 1048577, 1, 7, 1048577, 2, 7, 1048577, 3, 7, -1609564159, 4, 7, 1074790401, 65528, 7, -1609564159, 65529, 7, -1609564159, 65530, 7, 1048577, 65531, 7, 1074790401, 65532, 7, 1048577, 65533, 7, 1048577, 65534, 7, 1074790401, 65535, 7, 1074790401 )
+}
+__meta__ = {
+"_editor_clip_": 0
+}

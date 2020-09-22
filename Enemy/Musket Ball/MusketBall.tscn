@@ -1,7 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://MusketBall.gd" type="Script" id=1]
+[ext_resource path="res://Enemy/Musket Ball/MusketBall.gd" type="Script" id=1]
 [ext_resource path="res://Materials/DarkBrown.tres" type="Material" id=2]
+
 
 [sub_resource type="SphereMesh" id=2]
 radius = 0.1
