@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/Pear.glb-9b0e2b410bc4c4f0fd6c34158c11d324.scn"
+path="res://.import/Flintlock.gltf-28b3f2dd94cd877827618f7918dfbc71.scn"
 
 [deps]
 
-source_file="res://Enemy/Pear/Pear.glb"
-dest_files=[ "res://.import/Pear.glb-9b0e2b410bc4c4f0fd6c34158c11d324.scn" ]
+source_file="res://Enemy/Pear/Model/Gun/Flintlock.gltf"
+dest_files=[ "res://.import/Flintlock.gltf-28b3f2dd94cd877827618f7918dfbc71.scn" ]
 
 [params]
 
