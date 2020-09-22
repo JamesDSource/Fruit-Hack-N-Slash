@@ -5,7 +5,7 @@
 [ext_resource path="res://Player/Sounds/HitSound.wav" type="AudioStream" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
-radius = 0.592311
+radius = 0.695636
 height = 2.20019
 
 [node name="Player" type="KinematicBody"]
@@ -23,7 +23,8 @@ __meta__ = {
 [node name="SpringArm" type="SpringArm" parent="CameraPivotH/CameraPivotV"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
 collision_mask = 4
-spring_length = 6.0
+spring_length = 5.0
+margin = 0.005
 
 [node name="Camera" type="Camera" parent="CameraPivotH/CameraPivotV/SpringArm"]
 cull_mask = 2148532223
