@@ -28,14 +28,10 @@ export var max_super_armor = 1
 var super_armor = max_super_armor
 
 onready var raycast = $RayCast
-#onready var anim = $enemyanimationthing?
 onready var eyes = $Eyes
 onready var shoottimer = $AttackTimer
 onready var pathtimer = $PathRefreshTimer
 onready var attackrange = $AttackArea/CollisionShape
-
-# attacks
-export var attack_animation = ""
 
 func _ready():
 	add_to_group("Enemys")
@@ -103,10 +99,7 @@ func _process(delta):
 					path_update = false
 		
 		ENEMYSTATE.ATTACK: # State for when the enemy is attacking the player
-			can_move = false
-			if attack_animation == "": 
-				state = ENEMYSTATE.ALERT
-				$AttackTimer.start()
+			attack_state()
 		
 		ENEMYSTATE.STUNNED: # State for when the enemy is stunned
 			can_move = false
@@ -139,3 +132,7 @@ func _on_PathRefreshTimer_timeout():
 func _on_StunTimer_timeout():
 	if state == ENEMYSTATE.STUNNED:
 		state = ENEMYSTATE.ALERT
+
+#Overide Functions
+func attack_state():
+	pass
