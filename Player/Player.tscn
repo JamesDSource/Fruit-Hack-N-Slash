@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.695636
-height = 2.20019
+height = 1.97416
 
 [node name="Player" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.154644, 0 )
