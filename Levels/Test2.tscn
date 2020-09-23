@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Enemy/Strawberry.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemy/Strawberry/Strawberry.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Materials/DarkRed.tres" type="Material" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Pause/Pause.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemy/Pear/Pear.tscn" type="PackedScene" id=5]
 [ext_resource path="res://default_env.tres" type="Environment" id=6]
 
 [sub_resource type="NavigationMesh" id=1]
@@ -75,6 +76,9 @@ material/0 = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/MeshBox2/StaticBody"]
 shape = SubResource( 6 )
+
+[node name="EnemyPear" parent="Navigation" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -45.667, 0, -32.3 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.322903, 0.1444, 10.2254 )

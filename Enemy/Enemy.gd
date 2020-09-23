@@ -17,6 +17,7 @@ var path_node = 0
 export var speed = 10
 export var acceleration = 5
 export var turn_speed = 2.5
+export var apply_gravity = true
 var path_update = false
 var velocity = Vector3()
 var can_move = true
@@ -60,7 +61,6 @@ func _on_Area_body_exited(body):
 
 func _process(delta):
 	update()
-	print(state)
 	match state:
 		ENEMYSTATE.IDLE: # Default state when the enemy has never encountered the player
 			can_move = false
@@ -89,7 +89,6 @@ func _process(delta):
 					for body in overlapping_bodies:
 						if body.is_in_group("Player"):
 							has_player = true
-					#print($AttackTimer.time_left)
 					if has_player:
 						if $AttackTimer.time_left == 0:
 							state = ENEMYSTATE.ATTACK
@@ -119,7 +118,8 @@ func _physics_process(delta):
 		if direction.length() < 1:
 			path_node += 1	
 	velocity = velocity.linear_interpolate(direction.normalized()*speed, acceleration*delta)
-	velocity.y += Constants.GRAVITY
+	if apply_gravity:
+		velocity.y += Constants.GRAVITY
 	move_and_slide(velocity, Vector3.UP)
 
 func move_to(target_pos):
