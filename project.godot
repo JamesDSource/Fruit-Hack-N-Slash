@@ -24,6 +24,7 @@ config/icon="res://icon.png"
 Constants="*res://Autoloads/Constants.gd"
 Math="*res://Autoloads/Math.gd"
 HitPause="*res://Autoloads/HitPause.gd"
+Materials="*res://Autoloads/Materials.gd"
 
 [importer_defaults]
 
