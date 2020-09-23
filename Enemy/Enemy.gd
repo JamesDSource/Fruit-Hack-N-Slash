@@ -34,6 +34,7 @@ onready var pathtimer = $PathRefreshTimer
 onready var attackrange = $AttackArea/CollisionShape
 
 func _ready():
+	init()
 	add_to_group("Enemys")
 
 func damage(hp_damage):
@@ -140,4 +141,7 @@ func attack_state():
 	pass
 
 func update():
+	pass
+	
+func init():
 	pass

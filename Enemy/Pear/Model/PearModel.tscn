@@ -30,4 +30,4 @@ autoplay = "Idle-loop"
 anims/Idle-loop = ExtResource( 6 )
 
 [node name="Flintlock" parent="." index="2" instance=ExtResource( 1 )]
-transform = Transform( -1.62921e-08, 0, -0.1, 0, 0.1, 0, 0.1, 0, -1.62921e-08, -0.059884, 0.910903, 0 )
+transform = Transform( -1.62921e-08, 0, -0.1, 0, 0.1, 0, 0.1, 0, -1.62921e-08, -0.0764016, 0.11732, 0 )
