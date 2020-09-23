@@ -27,7 +27,6 @@ var hit_points = max_hit_points
 export var max_super_armor = 1
 var super_armor = max_super_armor
 
-onready var raycast = $RayCast
 onready var eyes = $Eyes
 onready var shoottimer = $AttackTimer
 onready var pathtimer = $PathRefreshTimer
@@ -58,9 +57,10 @@ func _on_Area_body_exited(body):
 		target = null
 		shoottimer.stop()
 		pathtimer.stop()
-		print("LostTarget")
 
 func _process(delta):
+	update()
+	print(state)
 	match state:
 		ENEMYSTATE.IDLE: # Default state when the enemy has never encountered the player
 			can_move = false
@@ -89,7 +89,7 @@ func _process(delta):
 					for body in overlapping_bodies:
 						if body.is_in_group("Player"):
 							has_player = true
-							
+					#print($AttackTimer.time_left)
 					if has_player:
 						if $AttackTimer.time_left == 0:
 							state = ENEMYSTATE.ATTACK
@@ -135,4 +135,7 @@ func _on_StunTimer_timeout():
 
 #Overide Functions
 func attack_state():
+	pass
+
+func update():
 	pass
