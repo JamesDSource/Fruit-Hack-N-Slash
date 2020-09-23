@@ -17,7 +17,6 @@ var has_shading = true
 func _ready():
 	for material_path in material_paths:
 		materials.append(load(material_path))
-	
 	set_material_shading(false)
 
 func set_material_shading(shading):

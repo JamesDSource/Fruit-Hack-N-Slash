@@ -1,6 +1,5 @@
 extends Node
 
-
 func interpolate_angle(a, b, amount):
 	var difference_one = b - a
 	var wrap_difference = a if a < 180 else 360 - a
@@ -16,7 +15,7 @@ func interpolate_angle(a, b, amount):
 		difference = difference_two
 		dir = -1 if a < 180 else 1
 	
-	if difference < amount:
+	if difference <= amount:
 		return b
 	else:
 		return a + (amount*dir)

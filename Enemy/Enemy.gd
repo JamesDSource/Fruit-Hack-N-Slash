@@ -74,13 +74,10 @@ func _process(delta):
 		
 		ENEMYSTATE.ALERT: # State for when the enemy has detected the player and is chasing
 			can_move = true
+			turn_twords_target()
 			if target == null:
 				state = ENEMYSTATE.SEARCH
 			else:
-				#looks at the target
-				eyes.look_at(target.global_transform.origin, Vector3.UP)
-				rotate_y(deg2rad(eyes.rotation.y * turn_speed))
-				
 				# get overlapping bodies in a list, 
 				# and checks if any are in the player group
 				if path_update:
@@ -125,6 +122,11 @@ func _physics_process(delta):
 func move_to(target_pos):
 	path = nav.get_simple_path(global_transform.origin, target_pos)
 	path_node = 0
+
+func turn_twords_target():
+	#looks at the target
+	eyes.look_at(target.global_transform.origin, Vector3.UP)
+	rotate_y(deg2rad(eyes.rotation.y * turn_speed))
 
 func _on_PathRefreshTimer_timeout():
 	path_update = true

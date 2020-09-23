@@ -90,7 +90,6 @@ func _physics_process(delta):
 			can_move = true
 			if Input.is_action_just_pressed("jump"):
 				jump_buffer = jump_buffer_frames
-				Materials.set_material_shading(!Materials.has_shading)
 			elif jump_buffer > 0:
 				jump_buffer-=delta
 			
