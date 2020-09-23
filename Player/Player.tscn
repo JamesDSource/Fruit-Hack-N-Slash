@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Model/PirateModel.tscn" type="PackedScene" id=2]
@@ -6,7 +6,10 @@
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.695636
-height = 1.97416
+height = 1.46164
+
+[sub_resource type="RayShape" id=2]
+length = 0.585571
 
 [node name="Player" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.154644, 0 )
@@ -32,8 +35,12 @@ current = true
 fov = 90.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.73738, -9.53674e-07 )
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 2.03963, -9.53674e-07 )
 shape = SubResource( 1 )
+
+[node name="LowerCollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0.571623, 0 )
+shape = SubResource( 2 )
 
 [node name="Pirate" parent="." instance=ExtResource( 2 )]
 transform = Transform( -1, 0.000785398, -3.25841e-07, 0.000785398, 0.999999, -0.00113446, -5.65165e-07, -0.00113446, -0.999999, 0, 0, 0 )
