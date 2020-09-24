@@ -1,15 +1,100 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Pause/Pause.gd" type="Script" id=1]
+[ext_resource path="res://UI/NineSlice.png" type="Texture" id=2]
+[ext_resource path="res://UI/menu.res" type="DynamicFont" id=3]
+[ext_resource path="res://UI/Title.tres" type="DynamicFont" id=4]
 
 [node name="Pause" type="Control"]
-pause_mode = 2
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -512.0
-margin_right = 512.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -0.445465
+margin_bottom = -0.445435
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource( 2 )
+patch_margin_left = 64
+patch_margin_top = 64
+patch_margin_right = 64
+patch_margin_bottom = 64
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -55.0
+margin_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume" type="Button" parent="NinePatchRect/GridContainer"]
+pause_mode = 2
+margin_right = 614.0
+margin_bottom = 53.0
+focus_mode = 0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.494118, 0.556863, 0.396078, 1 )
+custom_colors/font_color_hover = Color( 0.505882, 0.317647, 0.4, 1 )
+custom_colors/font_color_pressed = Color( 0.992157, 0.941176, 0.709804, 1 )
+custom_constants/hseparation = 0
+shortcut_in_tooltip = false
+enabled_focus_mode = 0
+text = "Resume"
+flat = true
+clip_text = true
+
+[node name="Quit" type="Button" parent="NinePatchRect/GridContainer"]
+pause_mode = 2
+margin_top = 57.0
+margin_right = 614.0
+margin_bottom = 110.0
+focus_mode = 0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.494118, 0.556863, 0.396078, 1 )
+custom_colors/font_color_hover = Color( 0.505882, 0.317647, 0.4, 1 )
+custom_colors/font_color_pressed = Color( 0.992157, 0.941176, 0.709804, 1 )
+custom_constants/hseparation = 0
+shortcut_in_tooltip = false
+enabled_focus_mode = 0
+text = "Quit"
+flat = true
+clip_text = true
+
+[node name="Paused" type="Label" parent="NinePatchRect"]
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.2
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.796078, 0.52549, 0.333333, 1 )
+text = "Paused"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="NinePatchRect/GridContainer/Resume" to="." method="_on_Resume_pressed"]
+[connection signal="pressed" from="NinePatchRect/GridContainer/Quit" to="." method="_on_Quit_pressed"]

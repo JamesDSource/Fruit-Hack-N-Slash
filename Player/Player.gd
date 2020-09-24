@@ -58,6 +58,7 @@ func set_blend_times():
 
 func damage(damage_points):
 	hit_points = max(0, hit_points-damage_points)
+	HitPause.hit_pause(0.15)
 	update_hud()
 
 func update_hud():
@@ -72,8 +73,6 @@ func _ready():
 	
 	#sets the blend times for animations
 	set_blend_times()
-	
-	damage(20)
 
 func _input(event):
 	# third person camera controls

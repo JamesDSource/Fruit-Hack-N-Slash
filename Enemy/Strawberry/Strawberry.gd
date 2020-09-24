@@ -3,7 +3,7 @@ extends "res://Enemy/Enemy.gd"
 onready var anim = $Strawberry/AnimationPlayer
 var set_animation = ""
 var current_animation = ""
-var damage = 1
+var damage = 25
 var attack_array = []
 
 func update():

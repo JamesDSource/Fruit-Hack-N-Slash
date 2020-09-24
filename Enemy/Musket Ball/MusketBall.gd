@@ -11,6 +11,6 @@ func _physics_process(delta):
 
 func _on_Hitbox_body_entered(body):
 	if body.is_in_group("Player"):
-		#damage player
+		body.damage(damage)
 		pass
 	queue_free()

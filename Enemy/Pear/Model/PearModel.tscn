@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Enemy/Pear/Model/Gun/FlintlockModel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Materials/DarkRed.tres" type="Material" id=2]
 [ext_resource path="res://Materials/DarkBrown.tres" type="Material" id=3]
 [ext_resource path="res://Enemy/Pear/Model/Pear.gltf" type="PackedScene" id=4]
 [ext_resource path="res://Materials/Green.material" type="Material" id=5]
-[ext_resource path="res://Enemy/Pear/Model/Idle-loop.anim" type="Animation" id=6]
 
 [node name="Pear" instance=ExtResource( 4 )]
 
@@ -27,7 +26,6 @@ material/0 = ExtResource( 3 )
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "Idle-loop"
-anims/Idle-loop = ExtResource( 6 )
 
 [node name="Flintlock" parent="." index="2" instance=ExtResource( 1 )]
-transform = Transform( -1.62921e-08, 0, -0.1, 0, 0.1, 0, 0.1, 0, -1.62921e-08, -0.0764016, 0.11732, 0 )
+transform = Transform( -1.62921e-08, 0, -0.1, 0, 0.1, 0, 0.1, 0, -1.62921e-08, -0.0764016, 0.493309, 0 )

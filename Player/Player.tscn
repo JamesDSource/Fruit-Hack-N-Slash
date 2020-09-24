@@ -53,5 +53,7 @@ one_shot = true
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 
-[node name="HUD" parent="." instance=ExtResource( 4 )]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource( 4 )]
 [connection signal="timeout" from="ComboTimer" to="." method="_on_ComboTimer_timeout"]

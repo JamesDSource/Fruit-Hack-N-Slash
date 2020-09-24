@@ -15,3 +15,11 @@ func toggle_pause():
 func _process(delta):
 	if Input.is_action_just_pressed("pause"):
 		toggle_pause()
+
+
+func _on_Resume_pressed():
+	toggle_pause()
+
+
+func _on_Quit_pressed():
+	get_tree().quit()
