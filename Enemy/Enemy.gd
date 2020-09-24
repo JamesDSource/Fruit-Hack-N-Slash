@@ -40,6 +40,8 @@ func _ready():
 func damage(hp_damage):
 	hit_points = max(0, hit_points - hp_damage)
 	HitPause.hit_pause(0.08)
+	$HitParticles.restart()
+	$HitParticles.emitting = true
 	super_armor -= 1
 	if super_armor <= 0:
 		state = ENEMYSTATE.STUNNED

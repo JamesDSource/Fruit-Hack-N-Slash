@@ -51,6 +51,10 @@ transform = Transform( -1, 0.000785398, -3.25841e-07, 0.000785398, 0.999999, -0.
 wait_time = 3.0
 one_shot = true
 
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 
@@ -61,3 +65,4 @@ stream = ExtResource( 5 )
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 4 )]
 [connection signal="timeout" from="ComboTimer" to="." method="_on_ComboTimer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]

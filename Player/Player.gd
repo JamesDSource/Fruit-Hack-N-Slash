@@ -57,10 +57,16 @@ func set_blend_times():
 				anim_player.set_blend_time(animation, second_animation, blend_time)
 
 func damage(damage_points):
-	hit_points = max(0, hit_points-damage_points)
-	HitPause.hit_pause(0.15)
-	$HurtSound.play()
-	update_hud()
+	if hit_points > 0:
+		hit_points = max(0, hit_points-damage_points)
+		HitPause.hit_pause(0.15)
+		$HurtSound.play()
+		update_hud()
+	
+		#Death state
+		if hit_points <= 0:
+			state = PLAYERSTATE.DEAD
+			$DeathTimer.start()
 
 func update_hud():
 	$CanvasLayer/HUD/HealthBar.value = ((hit_points/max_hit_points)*100)
@@ -108,7 +114,6 @@ func _physics_process(delta):
 			if Input.is_action_just_pressed("attack") && is_on_floor():
 				state = PLAYERSTATE.ATTACK
 				$ComboTimer.stop()
-		
 		PLAYERSTATE.ATTACK:
 			can_move = false
 			set_animation = attack_combo[combo_index]
@@ -133,7 +138,10 @@ func _physics_process(delta):
 				if combo_index >= attack_combo.size():
 					combo_index = 0
 				$ComboTimer.start()
-				
+		PLAYERSTATE.DEAD:
+			can_move = false
+			set_animation = "Death"
+			$CollisionShape.disabled = true
 
 func movement(delta):
 	set_animation = "Idle-loop"
@@ -188,3 +196,7 @@ func movement(delta):
 # resets the combo
 func _on_ComboTimer_timeout():
 	combo_index = 0
+
+
+func _on_DeathTimer_timeout():
+	get_tree().reload_current_scene()
