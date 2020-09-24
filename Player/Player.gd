@@ -12,7 +12,7 @@ enum PLAYERSTATE {
 var state = PLAYERSTATE.FREE
 
 # health
-var max_hit_points = 50
+var max_hit_points = 100.0
 var hit_points = max_hit_points
 
 # rotation
@@ -56,6 +56,13 @@ func set_blend_times():
 			if animation != second_animation:
 				anim_player.set_blend_time(animation, second_animation, blend_time)
 
+func damage(damage_points):
+	hit_points = max(0, hit_points-damage_points)
+	update_hud()
+
+func update_hud():
+	$HUD/HealthBar.value = int((hit_points/max_hit_points)*100)
+
 func _ready():
 	#locks the mouse in the same position so it doesn't touch the edges of the screen
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -65,6 +72,8 @@ func _ready():
 	
 	#sets the blend times for animations
 	set_blend_times()
+	
+	damage(20)
 
 func _input(event):
 	# third person camera controls

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Materials/DarkRed.tres" type="Material" id=1]
 [ext_resource path="res://Materials/Orange.material" type="Material" id=2]
@@ -7,8 +7,11 @@
 [ext_resource path="res://Materials/Red.material" type="Material" id=5]
 [ext_resource path="res://Materials/Yellow.tres" type="Material" id=6]
 [ext_resource path="res://Materials/Peach.material" type="Material" id=7]
+[ext_resource path="res://Enemy/Pear/Model/Gun/FlintlockModel.gd" type="Script" id=8]
 
 [node name="Flintlock" instance=ExtResource( 4 )]
+script = ExtResource( 8 )
+fire = true
 
 [node name="gun" parent="Armature/Skeleton" index="0"]
 material/0 = ExtResource( 7 )
@@ -26,3 +29,6 @@ material/0 = ExtResource( 5 )
 
 [node name="yello" parent="Armature/Skeleton" index="4"]
 material/0 = ExtResource( 6 )
+
+[node name="BulletSpawn" type="Position3D" parent="." index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.2682, 1.49549, 0 )

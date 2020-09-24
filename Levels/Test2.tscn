@@ -79,7 +79,7 @@ shape = SubResource( 6 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.1735, 9.32493, -26.3931 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.322903, 0.1444, 10.2254 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.369841, -0.000331521, 9.88005 )
 
 [node name="Pause" parent="." instance=ExtResource( 4 )]
 
