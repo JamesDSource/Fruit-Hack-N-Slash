@@ -1,23 +1,16 @@
-extends RigidBody
+extends KinematicBody
 
-var shoot = false
-var damage = 1
-var speed = 8
-
-func _ready():
-	set_as_toplevel(true)
+var damage = 10
+var speed = 20
+var direction = Vector3()
+var applied_gravity = 0
 
 func _physics_process(delta):
-	if shoot:
-		apply_impulse(transform.basis.z, -transform.basis.z * speed)
-		shoot = false
+	move_and_slide(direction*speed)
 
-func _on_Area_body_entered(body):
-	if body.is_in_group("Enemys"):
-		body.hit_points -= damage
-		queue_free()
-	elif body.is_in_group("Player"):
-		body.hit_points -= damage
-		queue_free()
-	else:
-		queue_free()
+
+func _on_Hitbox_body_entered(body):
+	if body.is_in_group("Player"):
+		#damage player
+		pass
+	queue_free()
