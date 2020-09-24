@@ -9,6 +9,7 @@ func attack_state():
 		projectile_spawn.global_transform.origin = $Pear/Flintlock/BulletSpawn.global_transform.origin
 		projectile_spawn.direction = -transform.basis.z
 		get_tree().get_root().add_child(projectile_spawn)
+		$Gunshot.play()
 		$Pear/Flintlock.fire = false
 
 func init():

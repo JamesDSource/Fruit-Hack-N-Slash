@@ -59,10 +59,11 @@ func set_blend_times():
 func damage(damage_points):
 	hit_points = max(0, hit_points-damage_points)
 	HitPause.hit_pause(0.15)
+	$HurtSound.play()
 	update_hud()
 
 func update_hud():
-	$HUD/HealthBar.value = int((hit_points/max_hit_points)*100)
+	$CanvasLayer/HUD/HealthBar.value = ((hit_points/max_hit_points)*100)
 
 func _ready():
 	#locks the mouse in the same position so it doesn't touch the edges of the screen

@@ -6,6 +6,7 @@
 [ext_resource path="res://UI/Title.tres" type="DynamicFont" id=4]
 
 [node name="Pause" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -0.445465
@@ -48,8 +49,7 @@ __meta__ = {
 }
 
 [node name="Resume" type="Button" parent="NinePatchRect/GridContainer"]
-pause_mode = 2
-margin_right = 614.0
+margin_right = 1152.0
 margin_bottom = 53.0
 focus_mode = 0
 size_flags_horizontal = 3
@@ -65,9 +65,8 @@ flat = true
 clip_text = true
 
 [node name="Quit" type="Button" parent="NinePatchRect/GridContainer"]
-pause_mode = 2
 margin_top = 57.0
-margin_right = 614.0
+margin_right = 1152.0
 margin_bottom = 110.0
 focus_mode = 0
 size_flags_horizontal = 3
