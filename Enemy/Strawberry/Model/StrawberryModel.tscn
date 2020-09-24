@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Materials/Red.material" type="Material" id=1]
 [ext_resource path="res://Materials/Purple.material" type="Material" id=2]
 [ext_resource path="res://Materials/Green.material" type="Material" id=3]
 [ext_resource path="res://Enemy/Strawberry/Model/Strawberry.gltf" type="PackedScene" id=4]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 2, 3.5, 3 )
 
 [node name="Strawberry" instance=ExtResource( 4 )]
 
@@ -21,3 +24,10 @@ material/0 = ExtResource( 3 )
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "Idle-loop"
+
+[node name="SwingHitBox" type="Area" parent="." index="2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="SwingHitBox" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 2 )
+shape = SubResource( 1 )
+disabled = true
