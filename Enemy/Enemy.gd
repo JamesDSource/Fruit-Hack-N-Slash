@@ -124,7 +124,7 @@ func move_to(target_pos):
 	path = nav.get_simple_path(global_transform.origin, target_pos)
 	path_node = 0
 
-func turn_twords_target():
+func turn_twords_target(): #towards
 	#looks at the target
 	eyes.look_at(target.global_transform.origin, Vector3.UP)
 	rotate_y(deg2rad(eyes.rotation.y * turn_speed))
