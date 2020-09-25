@@ -11,6 +11,7 @@ radius = 2.0
 extents = Vector3( 2, 3.5, 2.5 )
 
 [node name="EnemyStrawberry" instance=ExtResource( 1 )]
+transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0 )
 script = ExtResource( 3 )
 
 [node name="CollisionShape" parent="." index="0"]
