@@ -113,6 +113,7 @@ func _physics_process(delta):
 	var direction = Vector3()
 	if path_node < path.size() && can_move:
 		direction = (path[path_node] - global_transform.origin)
+		direction.y = 0
 		if direction.length() < 1:
 			path_node += 1	
 	velocity = velocity.linear_interpolate(direction.normalized()*speed, acceleration*delta)
