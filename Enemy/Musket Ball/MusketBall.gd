@@ -1,12 +1,12 @@
-extends KinematicBody
+extends Spatial
 
 var damage = 10
 var speed = 20
 var direction = Vector3()
 var applied_gravity = 0
 
-func _physics_process(delta):
-	move_and_slide(direction*speed)
+func _process(delta):
+	global_transform.origin += direction*speed*delta
 
 
 func _on_Hitbox_body_entered(body):

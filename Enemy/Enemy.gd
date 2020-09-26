@@ -119,7 +119,7 @@ func _physics_process(delta):
 	velocity = velocity.linear_interpolate(direction.normalized()*speed, acceleration*delta)
 	if apply_gravity:
 		velocity.y += Constants.GRAVITY
-	move_and_slide(velocity, Vector3.UP)
+	velocity = move_and_slide(velocity, Vector3.UP)
 
 func move_to(target_pos):
 	path = nav.get_simple_path(global_transform.origin, target_pos)
