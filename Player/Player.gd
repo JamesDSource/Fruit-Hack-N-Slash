@@ -47,6 +47,9 @@ var attack_thrust_speed = 6
 var sword_attack_damage = 20
 var attack_damaged = []
 
+# key
+var has_key = false
+
 func set_blend_times():
 	var blend_time = 0.1
 	var anim_player = $Pirate/AnimationPlayer
