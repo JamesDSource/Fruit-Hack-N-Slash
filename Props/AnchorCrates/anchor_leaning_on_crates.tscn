@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Materials/DarkRed.tres" type="Material" id=1]
+[ext_resource path="res://Materials/Purple.material" type="Material" id=2]
+[ext_resource path="res://Props/AnchorCrates/anchor_leaning_on_crates.gltf" type="PackedScene" id=3]
+[ext_resource path="res://Materials/Peach.material" type="Material" id=4]
+
+[node name="anchor_leaning_on_crates" instance=ExtResource( 3 )]
+
+[node name="AnchorCrates" parent="." index="0"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 4 )
+material/2 = ExtResource( 1 )
