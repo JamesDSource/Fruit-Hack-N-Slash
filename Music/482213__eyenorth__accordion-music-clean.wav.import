@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/482213__eyenorth__accordion-music-clean.wav-5b8a68a5301c8aa523271bc1f25f9002.sample"
+
+[deps]
+
+source_file="res://Music/482213__eyenorth__accordion-music-clean.wav"
+dest_files=[ "res://.import/482213__eyenorth__accordion-music-clean.wav-5b8a68a5301c8aa523271bc1f25f9002.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
