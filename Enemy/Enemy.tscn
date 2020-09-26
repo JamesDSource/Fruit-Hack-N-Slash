@@ -15,7 +15,6 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 2.01965, 0 )
 
 [node name="PathRefreshTimer" type="Timer" parent="."]
-wait_time = 0.1
 
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true
