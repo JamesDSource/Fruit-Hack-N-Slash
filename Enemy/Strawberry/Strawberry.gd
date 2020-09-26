@@ -20,11 +20,11 @@ func update():
 
 func attack_state():
 	if !$Strawberry/SwingHitBox/CollisionShape.disabled:
-				var bodies_hit = $Strawberry/SwingHitBox.get_overlapping_bodies()
-				for body in bodies_hit:
-					if body.is_in_group("Player") && attack_array.find(body) == -1:
-						body.damage(damage)
-						attack_array.append(body)
+		var bodies_hit = $Strawberry/SwingHitBox.get_overlapping_bodies()
+		for body in bodies_hit:
+			if body.is_in_group("Player") && attack_array.find(body) == -1:
+				body.damage(damage)
+				attack_array.append(body)
 	if !anim.is_playing():
 		state = ENEMYSTATE.ALERT
 		$AttackTimer.start()

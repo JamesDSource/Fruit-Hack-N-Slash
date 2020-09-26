@@ -7,12 +7,13 @@ var sensitivity = 0.1
 enum PLAYERSTATE {
 	FREE,
 	ATTACK,
-	DEAD
+	DEAD,
+	VICTORY
 }
 var state = PLAYERSTATE.FREE
 
 # health
-var max_hit_points = 100.0
+var max_hit_points = 40.0
 var hit_points = max_hit_points
 
 # rotation
@@ -144,7 +145,10 @@ func _physics_process(delta):
 		PLAYERSTATE.DEAD:
 			can_move = false
 			set_animation = "Death"
-			$CollisionShape.disabled = true
+			$CollisionShape.disabled = true		
+		PLAYERSTATE.VICTORY:
+			can_move = false
+			$CanvasLayer/HUD/Victory.visible = true
 
 func movement(delta):
 	set_animation = "Idle-loop"

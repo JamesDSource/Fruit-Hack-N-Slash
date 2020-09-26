@@ -23,3 +23,4 @@ func _on_ShootTimer_timeout():
 func _on_AttackArea_body_exited(body):
 	if body.is_in_group("Player") && state == ENEMYSTATE.ATTACK:
 		state = ENEMYSTATE.ALERT
+		
